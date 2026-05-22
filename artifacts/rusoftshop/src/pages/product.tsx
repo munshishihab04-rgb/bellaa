@@ -33,13 +33,18 @@ const staticProducts: Record<string, ProductData> = {
     platforms: ['Windows', 'macOS'],
     description: 'Autodesk 3ds Max 2026 è un software professionale per la modellazione 3D, la visualizzazione e l\'animazione. Ideale per designer, architetti, professionisti della grafica e sviluppatori di videogiochi.',
     descriptionExtra: ['Con 3ds Max 2026 puoi:', 'Il software è utilizzato per la visualizzazione architettonica, il design d\'interni, i giochi e i contenuti multimediali.', 'Dopo l\'attivazione, 3ds Max funziona senza restrizioni.'],
-    note: 'L\'attivazione avviene tramite il tuo account Autodesk. Il download è disponibile dal sito ufficiale Autodesk o tramite il link fornito.',
+    note: 'L\'abbonamento viene assegnato direttamente al tuo account Autodesk entro 5 minuti dall\'ordine. Puoi scaricare e usare il software da manage.autodesk.com/it.',
     features: ['creare modelli e scene 3D', 'eseguire rendering fotorealistici', 'lavorare con materiali, luci e texture', 'creare animazioni ed effetti visivi complessi'],
-    whatYouGet: ['Account pronto all\'uso con login e password inviati via email', 'Istruzioni passo-passo per il login e la configurazione', 'Supporto tecnico e garanzia di funzionamento per tutto il periodo'],
+    whatYouGet: ['L\'abbonamento sarà assegnato all\'email indicata al checkout entro 5 minuti', 'Accesso immediato al software da manage.autodesk.com/it', 'Istruzioni passo-passo per il login e l\'utilizzo', 'Supporto tecnico incluso per tutta la durata dell\'abbonamento'],
     systemRequirements: [{ label: 'Sistema operativo', value: 'Windows 10/11 (64-bit) o macOS 12+' },{ label: 'CPU', value: 'Processore Intel o AMD multi-core 64-bit, 2.5 GHz+' },{ label: 'RAM', value: '8 GB minimo (16 GB consigliati)' },{ label: 'GPU', value: '4 GB VRAM, compatibile DirectX 11' },{ label: 'Spazio disco', value: '9 GB liberi' }],
-    characteristics: [{ label: 'Sviluppatore', value: 'Autodesk' },{ label: 'Versione', value: '2026' },{ label: 'Tipo di licenza', value: 'Abbonamento' },{ label: 'Piattaforma', value: 'Windows / macOS' },{ label: 'Lingua', value: 'Multilingua' },{ label: 'Consegna', value: 'Email (istantanea)' }],
-    faqProduct: [{ question: 'Quando riceverò l\'account dopo il pagamento?', answer: 'Il tuo account ti verrà inviato via email entro 1 minuto dal pagamento. Puoi scaricare e attivare il programma immediatamente.' },{ question: 'Se non riesco ad installarlo, mi aiutate?', answer: 'Sì! Il nostro team di supporto tecnico è disponibile e ti aiuterà con l\'installazione e l\'attivazione. Scrivi a assistenza@licenvo.com.' },{ question: 'Dove posso scaricare il programma?', answer: 'Puoi scaricare 3ds Max dal sito ufficiale Autodesk o tramite il link fornito nell\'email dopo l\'acquisto.' }],
-    reviews: [{ initial: 'G', email: 'g***@gmail.com', date: '6 aprile 2026', product: 'Autodesk 3ds Max 2026', text: 'Grazie per l\'elaborazione rapida dell\'ordine e il supporto. La chiave di licenza è arrivata subito!', rating: 5 },{ initial: 'N', email: 'ni***@gmail.com', date: '19 marzo 2026', product: 'Autodesk 3ds Max 2023', text: 'Uso Autodesk 3ds Max da poco e mi piace molto. Nessun problema con l\'acquisto.', rating: 5 }],
+    characteristics: [{ label: 'Sviluppatore', value: 'Autodesk' },{ label: 'Versione', value: '2026' },{ label: 'Tipo di licenza', value: 'Abbonamento (subscription)' },{ label: 'Piattaforma', value: 'Windows / macOS' },{ label: 'Lingua', value: 'Multilingua' },{ label: 'Consegna', value: 'Via email entro 5 minuti' }],
+    faqProduct: [
+      { question: 'Quando riceverò l\'accesso dopo il pagamento?', answer: 'L\'abbonamento viene assegnato al tuo account Autodesk entro un massimo di 5 minuti dalla conferma dell\'ordine. Riceverai una notifica all\'email indicata al checkout.' },
+      { question: 'È una chiave di licenza o un abbonamento?', answer: 'Non è una chiave: è un abbonamento Autodesk che viene assegnato direttamente alla tua email. Non devi inserire nessun codice — basta accedere a manage.autodesk.com/it con il tuo account.' },
+      { question: 'Avevo già un abbonamento Autodesk scaduto. Cosa succede?', answer: 'Se hai già un account Autodesk con un abbonamento scaduto, l\'abbonamento precedente verrà rinnovato automaticamente. Troverai tutto esattamente come prima, con la stessa cronologia e i tuoi file.' },
+      { question: 'Come installo e uso il software?', answer: 'Dopo che l\'abbonamento è stato assegnato, accedi a manage.autodesk.com/it con la tua email, scarica l\'installer e avvia il software. Tutto funziona in cloud tramite il tuo account Autodesk.' },
+    ],
+    reviews: [{ initial: 'G', email: 'g***@gmail.com', date: '6 aprile 2026', product: 'Autodesk 3ds Max 2026', text: 'Abbonamento assegnato in meno di 3 minuti. Nessun problema, tutto funziona perfettamente da manage.autodesk.com.', rating: 5 },{ initial: 'N', email: 'ni***@gmail.com', date: '19 marzo 2026', product: 'Autodesk 3ds Max 2023', text: 'Avevo l\'abbonamento scaduto da mesi, si è rinnovato in automatico sulla mia email. Ottimo servizio!', rating: 5 }],
   },
   'windows-11-professional': {
     name: 'Windows 11 Pro', brand: 'MICROSOFT',
@@ -126,21 +131,44 @@ function shopifyToProduct(p: ShopifyProduct, slug: string): ProductData {
   try { parsedReqs = JSON.parse(requisiti); } catch {}
   try { parsedFaq = JSON.parse(faqRaw); } catch {}
 
-  const platforms = piattaforme ? piattaforme.split(',').map(s => s.trim()) : ['Windows'];
-  const whatYouGet = cosaRicevi ? cosaRicevi.split('\n').filter(Boolean) : [
-    'Chiave di licenza o account inviati via email',
+  const isAutodesk = (p.vendor || '').toLowerCase() === 'autodesk';
+  const platforms = piattaforme ? piattaforme.split(',').map(s => s.trim()) : (isAutodesk ? ['Windows', 'macOS'] : ['Windows']);
+
+  const whatYouGet = cosaRicevi ? cosaRicevi.split('\n').filter(Boolean) : isAutodesk ? [
+    'L\'abbonamento sarà assegnato all\'email indicata al checkout entro 5 minuti',
+    'Accesso immediato al software da manage.autodesk.com/it',
+    'Istruzioni passo-passo per il login e l\'utilizzo',
+    'Supporto tecnico incluso per tutta la durata dell\'abbonamento',
+  ] : [
+    'Chiave di licenza inviata via email',
     'Istruzioni passo-passo per l\'attivazione',
     'Supporto tecnico incluso',
   ];
 
   if (parsedChars.length === 0) {
-    parsedChars = [
+    parsedChars = isAutodesk ? [
+      { label: 'Sviluppatore', value: 'Autodesk' },
+      { label: 'Tipo di licenza', value: 'Abbonamento (subscription)' },
+      { label: 'Piattaforma', value: platforms.join(' / ') },
+      { label: 'Lingua', value: 'Multilingua' },
+      { label: 'Consegna', value: 'Via email entro 5 minuti' },
+    ] : [
       { label: 'Sviluppatore', value: p.vendor || '-' },
       { label: 'Piattaforma', value: platforms.join(' / ') },
       { label: 'Lingua', value: 'Multilingua' },
       { label: 'Consegna', value: 'Email (istantanea)' },
     ];
   }
+
+  const defaultFaq = isAutodesk ? [
+    { question: 'Quando riceverò l\'accesso dopo il pagamento?', answer: 'L\'abbonamento viene assegnato al tuo account Autodesk entro un massimo di 5 minuti dalla conferma dell\'ordine.' },
+    { question: 'È una chiave di licenza o un abbonamento?', answer: 'Non è una chiave: è un abbonamento Autodesk assegnato direttamente alla tua email. Accedi a manage.autodesk.com/it con il tuo account.' },
+    { question: 'Avevo già un abbonamento Autodesk scaduto. Cosa succede?', answer: 'L\'abbonamento precedente verrà rinnovato automaticamente sulla stessa email — ritrovi tutto come prima.' },
+    { question: 'Come installo e uso il software?', answer: 'Accedi a manage.autodesk.com/it con il tuo account Autodesk, scarica l\'installer e avvia il software.' },
+  ] : [
+    { question: 'Quando riceverò la licenza dopo il pagamento?', answer: 'La licenza ti verrà inviata via email entro 1 minuto dal pagamento.' },
+    { question: 'Se non riesco ad installarla, mi aiutate?', answer: 'Sì! Scrivi a assistenza@licenvo.com e ti aiutiamo subito.' },
+  ];
 
   return {
     name: p.title,
@@ -157,15 +185,12 @@ function shopifyToProduct(p: ShopifyProduct, slug: string): ProductData {
     platforms,
     description: p.description,
     descriptionExtra: [],
-    note: '',
+    note: isAutodesk ? 'L\'abbonamento viene assegnato direttamente al tuo account Autodesk entro 5 minuti dall\'ordine. Puoi scaricare e usare il software da manage.autodesk.com/it.' : '',
     features: [],
     whatYouGet,
     systemRequirements: parsedReqs,
     characteristics: parsedChars,
-    faqProduct: parsedFaq.length > 0 ? parsedFaq : [
-      { question: 'Quando riceverò la licenza dopo il pagamento?', answer: 'La licenza ti verrà inviata via email entro 1 minuto dal pagamento.' },
-      { question: 'Se non riesco ad installarla, mi aiutate?', answer: 'Sì! Scrivi a assistenza@licenvo.com e ti aiutiamo subito.' },
-    ],
+    faqProduct: parsedFaq.length > 0 ? parsedFaq : defaultFaq,
     reviews: [],
     variantId: firstVariant?.id,
   };
@@ -286,7 +311,10 @@ export default function ProductPage() {
                   <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
                   Disponibile
                 </span>
-                <span className="text-xs text-gray-500 border border-gray-200 px-2.5 py-1 rounded-full">Garanzia di attivazione</span>
+                {product.brand === 'AUTODESK'
+                  ? <span className="text-xs font-semibold text-orange-700 bg-orange-50 border border-orange-200 px-2.5 py-1 rounded-full">⏱ Assegnazione entro 5 minuti</span>
+                  : <span className="text-xs text-gray-500 border border-gray-200 px-2.5 py-1 rounded-full">Garanzia di attivazione</span>
+                }
               </div>
 
               <h1 className="text-xl font-bold text-gray-900 mb-2 leading-tight">{product.name}</h1>
@@ -330,8 +358,48 @@ export default function ProductPage() {
               </button>
               <p className="text-center text-xs text-gray-400 mb-5">Pagamento sicuro · Sostituzione o rimborso se non adatto</p>
 
+              {/* Autodesk subscription info block */}
+              {product.brand === 'AUTODESK' && (
+                <div className="mb-5 rounded-xl border border-orange-200 bg-orange-50 overflow-hidden">
+                  <div className="flex items-center gap-2 px-4 py-2.5 bg-orange-100 border-b border-orange-200">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="flex-shrink-0"><circle cx="12" cy="12" r="10" stroke="#c2410c" strokeWidth="2"/><path d="M12 8v4m0 4h.01" stroke="#c2410c" strokeWidth="2" strokeLinecap="round"/></svg>
+                    <span className="text-xs font-bold text-orange-800">Come funziona l'abbonamento Autodesk</span>
+                  </div>
+                  <div className="p-4 space-y-3">
+                    <div className="flex items-start gap-3">
+                      <span className="text-lg flex-shrink-0">📧</span>
+                      <div>
+                        <p className="text-xs font-bold text-orange-900">Nessuna chiave — è un abbonamento</p>
+                        <p className="text-xs text-orange-800 mt-0.5">L'abbonamento viene assegnato direttamente all'email che indichi al checkout. Non ricevi un codice da inserire.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <span className="text-lg flex-shrink-0">⏱</span>
+                      <div>
+                        <p className="text-xs font-bold text-orange-900">Assegnazione entro 5 minuti</p>
+                        <p className="text-xs text-orange-800 mt-0.5">Dopo la conferma del pagamento, l'abbonamento viene attivato sul tuo account Autodesk entro un massimo di 5 minuti.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <span className="text-lg flex-shrink-0">🔄</span>
+                      <div>
+                        <p className="text-xs font-bold text-orange-900">Abbonamento scaduto? Si rinnova in automatico</p>
+                        <p className="text-xs text-orange-800 mt-0.5">Se avevi già un abbonamento Autodesk scaduto sulla stessa email, verrà rinnovato automaticamente — ritrovi tutto come prima.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <span className="text-lg flex-shrink-0">🌐</span>
+                      <div>
+                        <p className="text-xs font-bold text-orange-900">Scarica e usa da manage.autodesk.com/it</p>
+                        <p className="text-xs text-orange-800 mt-0.5">Accedi con il tuo account Autodesk su <a href="https://manage.autodesk.com/it" target="_blank" rel="noopener noreferrer" className="underline font-semibold">manage.autodesk.com/it</a> per scaricare, installare e gestire il software.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               <div className="mb-5">
-                <p className="text-sm font-bold text-gray-900 mb-3">Cosa riceverai subito dopo il pagamento</p>
+                <p className="text-sm font-bold text-gray-900 mb-3">{product.brand === 'AUTODESK' ? 'Cosa riceverai entro 5 minuti' : 'Cosa riceverai subito dopo il pagamento'}</p>
                 <ul className="space-y-2">
                   {product.whatYouGet.map((item, idx) => (
                     <li key={idx} className="flex items-start gap-3 text-sm text-gray-700">
