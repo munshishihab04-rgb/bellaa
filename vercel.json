@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "buildCommand": "cd artifacts/rusoftshop && npm install -g pnpm && pnpm install && pnpm run build",
+  "outputDirectory": "artifacts/rusoftshop/dist",
+  "framework": null
+}
