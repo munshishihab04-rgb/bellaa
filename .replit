@@ -30,3 +30,8 @@ externalPort = 8081
 [[ports]]
 localPort = 21416
 externalPort = 80
+
+[userenv]
+
+[userenv.shared]
+VITE_SHOPIFY_STORE_DOMAIN = "licenvo.myshopify.com"
