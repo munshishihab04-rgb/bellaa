@@ -2,7 +2,8 @@
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ],
-  "buildCommand": "cd artifacts/rusoftshop && npm install -g pnpm && pnpm install && pnpm run build",
+  "buildCommand": "cd artifacts/rusoftshop && npm install -g pnpm && pnpm install --no-frozen-lockfile && pnpm run build",
   "outputDirectory": "artifacts/rusoftshop/dist",
-  "framework": null
+  "framework": null,
+  "installCommand": "pnpm install --no-frozen-lockfile"
 }
