@@ -76,6 +76,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
+    "@shopify/hydrogen-react": "^2026.4.2",
     "next": "^16.2.6"
   }
 }

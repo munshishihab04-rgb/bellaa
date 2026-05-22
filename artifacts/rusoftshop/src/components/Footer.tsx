@@ -7,18 +7,18 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 py-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
           <div>
-            <h4 className="font-bold text-gray-900 mb-4 text-sm">Catalog</h4>
+            <h4 className="font-bold text-gray-900 mb-4 text-sm">Catalogo</h4>
             <ul className="space-y-2">
               {[
                 { label: 'Windows', href: '/catalog/windows' },
                 { label: 'Office', href: '/catalog/office' },
-                { label: 'Sets', href: '/catalog/sets' },
-                { label: 'Office applications', href: '/catalog/office-apps' },
+                { label: 'Pacchetti', href: '/catalog/sets' },
+                { label: 'Applicazioni Office', href: '/catalog/office-apps' },
                 { label: 'Windows Server', href: '/catalog/windows-server' },
                 { label: 'Autodesk', href: '/catalog/autodesk' },
-                { label: 'Subscriptions', href: '/catalog/subscriptions' },
+                { label: 'Abbonamenti', href: '/catalog/subscriptions' },
                 { label: 'Adobe', href: '/catalog/adobe' },
-                { label: 'Sale', href: '/catalog/sale' },
+                { label: 'Offerte', href: '/catalog/sale' },
               ].map((item) => (
                 <li key={item.label}>
                   <Link href={item.href} className="text-sm text-gray-500 hover:text-gray-800 transition-colors">
@@ -30,14 +30,13 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-bold text-gray-900 mb-4 text-sm">Information</h4>
+            <h4 className="font-bold text-gray-900 mb-4 text-sm">Informazioni</h4>
             <ul className="space-y-2">
               {[
-                { label: 'Articles and instructions', href: '/blog' },
-                { label: 'Reviews', href: '/reviews' },
-                { label: 'Vacancies', href: '/work' },
-                { label: 'Contacts', href: '/contacts' },
-                { label: 'For legal entities', href: '/wholesale' },
+                { label: 'Articoli e guide', href: '/blog' },
+                { label: 'Recensioni', href: '/reviews' },
+                { label: 'Contatti', href: '/contacts' },
+                { label: 'Per aziende', href: '/wholesale' },
                 { label: 'Blog', href: '/blog' },
               ].map((item) => (
                 <li key={item.label}>
@@ -50,13 +49,15 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-bold text-gray-900 mb-4 text-sm">Additionally</h4>
+            <h4 className="font-bold text-gray-900 mb-4 text-sm">Altro</h4>
             <ul className="space-y-2">
               {[
-                { label: 'Payment and delivery', href: '/payment' },
-                { label: 'Frequently asked questions', href: '/faq' },
-                { label: 'Download programs', href: '/download' },
-                { label: 'Exchange and return', href: '/return' },
+                { label: 'Pagamento e consegna', href: '/payment' },
+                { label: 'Domande frequenti', href: '/faq' },
+                { label: 'Download programmi', href: '/download' },
+                { label: 'Rimborsi e resi', href: '/return' },
+                { label: 'Privacy Policy', href: '/privacy' },
+                { label: 'Termini e condizioni', href: '/terms' },
               ].map((item) => (
                 <li key={item.label}>
                   <Link href={item.href} className="text-sm text-gray-500 hover:text-gray-800 transition-colors">
@@ -69,49 +70,60 @@ export default function Footer() {
 
           <div>
             <div className="border border-gray-200 rounded-xl p-4 mb-4">
-              <a href="tel:88003501032" className="font-bold text-gray-900 text-base hover:text-[#1c64ff] transition-colors">
-                8 (800) 350-10-32
+              <a href="tel:+393936841051" className="font-bold text-gray-900 text-base hover:text-[#1c64ff] transition-colors">
+                +39 393 684 1051
               </a>
-              <p className="text-sm text-gray-500 mt-1">Free call within Russia</p>
+              <p className="text-sm text-gray-500 mt-1">Assistenza clienti</p>
             </div>
             <div className="border border-gray-200 rounded-xl p-4">
-              <a href="mailto:support@rusoft.shop" className="font-bold text-gray-900 text-sm hover:text-[#1c64ff] transition-colors">
-                support@rusoft.shop
+              <a href="mailto:assistenza@licenvo.com" className="font-bold text-gray-900 text-sm hover:text-[#1c64ff] transition-colors break-all">
+                assistenza@licenvo.com
               </a>
-              <p className="text-sm text-gray-500 mt-1">Technical support</p>
+              <p className="text-sm text-gray-500 mt-1">Supporto tecnico</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Dati aziendali */}
+        <div className="border border-gray-100 rounded-xl p-5 mb-6 bg-gray-50">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-gray-500">
+            <div>
+              <p className="font-bold text-gray-700 mb-1">DIGITALSOFT DI MUNSHI SHIHAB</p>
+              <p>Via Aldo Pio Manuzio 24 – 40132 Bologna (BO)</p>
+              <p>P.IVA: 04358941203</p>
+              <p>Codice Fiscale: SHHMSH04M02Z249U</p>
+              <p>REA: BO-588058</p>
+            </div>
+            <div>
+              <p>Forma giuridica: Impresa individuale</p>
+              <p>Codice ATECO: 47.40.10</p>
+              <p>PEC: <a href="mailto:munshishihab@legalmail.it" className="text-[#1c64ff] hover:underline">munshishihab@legalmail.it</a></p>
+              <p className="mt-2 text-gray-400">Iscrizione CCIAA: 16/03/2026 · Titolare: Shihab Munshi</p>
             </div>
           </div>
         </div>
 
         <div className="border-t border-gray-100 pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <Link href="/">
-            <img src="https://rusoft.shop/wp-content/uploads/2026/02/logotip.svg" alt="RuSoft Shop" className="h-8 w-auto" />
+          <Link href="/" className="flex items-center gap-2">
+            <span className="text-xl font-black text-[#1c64ff]">Licenvo</span>
+            <span className="text-sm text-gray-400">.com</span>
           </Link>
-          <p className="text-xs text-gray-500 max-w-xs">
-            Verified internet resource, domain name identifier{' '}
-            <a href="https://www.reg.ru/whois/?dname=rusoft.shop" className="text-[#1c64ff] hover:underline" target="_blank" rel="noopener noreferrer">
-              DO16552615-GMO. Registrar of Domain Names REG.RU LLC
-            </a>
+          <p className="text-xs text-gray-500 max-w-sm">
+            Licenvo è un marchio di DIGITALSOFT DI MUNSHI SHIHAB. Tutti i software sono licenze digitali originali consegnate via email.
           </p>
-          <div className="flex items-center gap-4">
-            <a href="https://www.reg.ru/" target="_blank" rel="noopener noreferrer">
-              <img src="https://rusoft.shop/wp-content/uploads/2024/11/footer_logo1-1.svg" alt="REG.RU" className="h-6 w-auto opacity-60 hover:opacity-100 transition-opacity" />
-            </a>
-            <a href="https://www.cloudflare.com/" target="_blank" rel="noopener noreferrer">
-              <img src="https://rusoft.shop/wp-content/uploads/2024/11/footer_logo2-1.svg" alt="Cloudflare" className="h-6 w-auto opacity-60 hover:opacity-100 transition-opacity" />
-            </a>
-            <a href="https://yookassa.ru/" target="_blank" rel="noopener noreferrer">
-              <img src="https://rusoft.shop/wp-content/uploads/2024/11/footer_logo3-1.svg" alt="YooKassa" className="h-6 w-auto opacity-60 hover:opacity-100 transition-opacity" />
-            </a>
+          <div className="flex items-center gap-3">
+            <span className="text-xs text-gray-400 border border-gray-200 rounded px-2 py-1">🔒 SSL</span>
+            <span className="text-xs text-gray-400 border border-gray-200 rounded px-2 py-1">✓ Pagamento sicuro</span>
           </div>
         </div>
 
         <div className="border-t border-gray-100 pt-4 mt-4 flex flex-col md:flex-row items-center justify-between gap-2">
-          <p className="text-xs text-gray-400">Rusoft &copy; 2020</p>
+          <p className="text-xs text-gray-400">© 2024 Licenvo.com – DIGITALSOFT DI MUNSHI SHIHAB. Tutti i diritti riservati.</p>
           <div className="flex items-center gap-4 flex-wrap">
             <Link href="/privacy" className="text-xs text-gray-400 hover:text-gray-600">Privacy Policy</Link>
-            <Link href="/terms" className="text-xs text-gray-400 hover:text-gray-600">User Agreement</Link>
-            <Link href="/offer" className="text-xs text-gray-400 hover:text-gray-600">Offer Agreement</Link>
+            <Link href="/terms" className="text-xs text-gray-400 hover:text-gray-600">Termini e Condizioni</Link>
+            <Link href="/return" className="text-xs text-gray-400 hover:text-gray-600">Politica di Rimborso</Link>
+            <Link href="/payment" className="text-xs text-gray-400 hover:text-gray-600">Pagamento e Consegna</Link>
           </div>
         </div>
       </div>

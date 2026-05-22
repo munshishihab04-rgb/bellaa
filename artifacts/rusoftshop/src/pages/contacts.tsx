@@ -7,16 +7,16 @@ export default function ContactsPage() {
   return (
     <div className="min-h-screen bg-[#f6f7fa]">
       <Header />
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="max-w-5xl mx-auto px-4 py-8">
         <nav className="flex items-center gap-2 text-sm text-gray-500 mb-6">
           <Link href="/" className="hover:text-gray-800">Home</Link>
           <span className="text-gray-300">▶</span>
-          <span className="text-gray-700">Contacts</span>
+          <span className="text-gray-700">Contatti</span>
         </nav>
-        <h1 className="text-2xl font-bold text-gray-900 mb-8">Contacts</h1>
+        <h1 className="text-2xl font-bold text-gray-900 mb-8">Contatti</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-white rounded-2xl shadow-sm p-6">
-            <h2 className="font-bold text-gray-900 text-lg mb-4">Get in Touch</h2>
+            <h2 className="font-bold text-gray-900 text-lg mb-4">Assistenza clienti</h2>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -25,8 +25,8 @@ export default function ContactsPage() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500">Phone (free within Russia)</p>
-                  <a href="tel:88003501032" className="font-bold text-gray-900 text-lg hover:text-[#1c64ff] transition-colors">8 (800) 350-10-32</a>
+                  <p className="text-sm text-gray-500">Telefono</p>
+                  <a href="tel:+393936841051" className="font-bold text-gray-900 text-lg hover:text-[#1c64ff] transition-colors">+39 393 684 1051</a>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -37,18 +37,41 @@ export default function ContactsPage() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500">Technical support</p>
-                  <a href="mailto:support@rusoft.shop" className="font-bold text-gray-900 hover:text-[#1c64ff] transition-colors">support@rusoft.shop</a>
+                  <p className="text-sm text-gray-500">Email assistenza</p>
+                  <a href="mailto:assistenza@licenvo.com" className="font-bold text-gray-900 hover:text-[#1c64ff] transition-colors">assistenza@licenvo.com</a>
                 </div>
               </div>
             </div>
           </div>
+
           <div className="bg-white rounded-2xl shadow-sm p-6">
-            <h2 className="font-bold text-gray-900 text-lg mb-4">Working Hours</h2>
-            <div className="space-y-2">
-              <div className="flex justify-between"><span className="text-gray-600">Support hours</span><span className="font-medium text-gray-900">9:00 – 21:00 MSK</span></div>
-              <div className="flex justify-between"><span className="text-gray-600">Order processing</span><span className="font-medium text-green-600">24/7 automatic</span></div>
-              <div className="flex justify-between"><span className="text-gray-600">Delivery</span><span className="font-medium text-green-600">Instant (email)</span></div>
+            <h2 className="font-bold text-gray-900 text-lg mb-4">Dati aziendali</h2>
+            <div className="space-y-2 text-sm text-gray-700">
+              <p className="font-bold text-gray-900">DIGITALSOFT DI MUNSHI SHIHAB</p>
+              <p>Via Aldo Pio Manuzio 24</p>
+              <p>40132 Bologna (BO), Italia</p>
+              <div className="pt-2 border-t border-gray-100 space-y-1">
+                <p><span className="text-gray-500">P.IVA:</span> 04358941203</p>
+                <p><span className="text-gray-500">Cod. Fiscale:</span> SHHMSH04M02Z249U</p>
+                <p><span className="text-gray-500">REA:</span> BO-588058</p>
+                <p><span className="text-gray-500">PEC:</span> <a href="mailto:munshishihab@legalmail.it" className="text-[#1c64ff] hover:underline">munshishihab@legalmail.it</a></p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-2xl shadow-sm p-6 md:col-span-2">
+            <h2 className="font-bold text-gray-900 text-lg mb-4">Domande frequenti prima di contattarci</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {[
+                { q: 'Non ho ricevuto la licenza', a: 'Controlla la cartella spam. Se non c\'è, scrivi a assistenza@licenvo.com con il numero d\'ordine.' },
+                { q: 'La chiave non funziona', a: 'Contattaci subito: sostituiamo il prodotto o rimborsiamo completamente, senza domande.' },
+                { q: 'Tempi di risposta', a: 'Rispondiamo via email entro 1 ora nei giorni lavorativi, entro 4 ore nel weekend.' },
+              ].map((item) => (
+                <div key={item.q} className="bg-gray-50 rounded-xl p-4">
+                  <p className="font-semibold text-gray-900 text-sm mb-2">{item.q}</p>
+                  <p className="text-sm text-gray-600">{item.a}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>

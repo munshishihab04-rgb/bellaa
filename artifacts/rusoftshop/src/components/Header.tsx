@@ -11,26 +11,21 @@ export default function Header() {
     { name: 'Autodesk', href: '/catalog/autodesk' },
     { name: 'Adobe', href: '/catalog/adobe' },
     { name: 'Antivirus', href: '/catalog/antivirus' },
-    { name: 'Sets', href: '/catalog/sets' },
-    { name: 'Subscriptions', href: '/catalog/subscriptions' },
-    { name: 'Sale', href: '/catalog/sale' },
+    { name: 'Pacchetti', href: '/catalog/sets' },
+    { name: 'Abbonamenti', href: '/catalog/subscriptions' },
+    { name: 'Offerte', href: '/catalog/sale' },
   ];
 
   return (
     <>
-      <div className="bg-[#1d1b20] text-white text-sm py-2 px-4 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <img src="https://rusoft.shop/wp-content/uploads/2025/03/banner-left-r7.png" alt="R7 Office" className="h-5 w-auto" />
-          <span className="hidden sm:inline">Evaluate all the advantages of R7-Office</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <img src="https://rusoft.shop/wp-content/uploads/2025/03/rusoft_r7.svg" alt="R7 Office logo" className="h-4 w-auto" />
-        </div>
+      <div className="bg-[#1d1b20] text-white text-sm py-2 px-4 flex items-center justify-center">
+        <span>🔒 Consegna istantanea via email · Supporto tecnico incluso · Licenze originali garantite</span>
       </div>
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-4">
-          <Link href="/" className="flex-shrink-0">
-            <img src="https://rusoft.shop/wp-content/uploads/2026/02/logotip.svg" alt="RuSoft Shop" className="h-10 w-auto" />
+          <Link href="/" className="flex-shrink-0 flex items-center gap-2">
+            <span className="text-2xl font-black text-[#1c64ff] tracking-tight">Licenvo</span>
+            <span className="text-xs text-gray-400 font-medium hidden sm:block">.com</span>
           </Link>
 
           <div className="relative">
@@ -43,7 +38,7 @@ export default function Header() {
                 <rect y="6" width="18" height="2" rx="1" fill="white" />
                 <rect y="12" width="18" height="2" rx="1" fill="white" />
               </svg>
-              Catalog
+              Catalogo
             </button>
 
             {showCatalog && (
@@ -68,21 +63,21 @@ export default function Header() {
           <nav className="hidden md:flex items-center gap-5 flex-1">
             <div className="relative group">
               <button className="text-sm font-medium text-gray-700 hover:text-gray-900 flex items-center gap-1">
-                Information
+                Informazioni
                 <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
                   <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
               <div className="absolute top-full left-0 mt-2 bg-white shadow-xl rounded-xl border border-gray-100 w-52 z-50 hidden group-hover:block">
-                <Link href="/blog" className="block px-4 py-2.5 text-sm hover:bg-gray-50 text-gray-700">Articles &amp; Instructions</Link>
-                <Link href="/reviews" className="block px-4 py-2.5 text-sm hover:bg-gray-50 text-gray-700">Reviews</Link>
-                <Link href="/contacts" className="block px-4 py-2.5 text-sm hover:bg-gray-50 text-gray-700">Contacts</Link>
-                <Link href="/wholesale" className="block px-4 py-2.5 text-sm hover:bg-gray-50 text-gray-700">For Legal Entities</Link>
+                <Link href="/blog" className="block px-4 py-2.5 text-sm hover:bg-gray-50 text-gray-700">Articoli e guide</Link>
+                <Link href="/reviews" className="block px-4 py-2.5 text-sm hover:bg-gray-50 text-gray-700">Recensioni</Link>
+                <Link href="/contacts" className="block px-4 py-2.5 text-sm hover:bg-gray-50 text-gray-700">Contatti</Link>
+                <Link href="/wholesale" className="block px-4 py-2.5 text-sm hover:bg-gray-50 text-gray-700">Per aziende</Link>
               </div>
             </div>
-            <Link href="/work" className="text-sm font-medium text-gray-700 hover:text-gray-900">Vacancies</Link>
             <Link href="/blog" className="text-sm font-medium text-gray-700 hover:text-gray-900">Blog</Link>
-            <Link href="/download" className="text-sm font-medium text-gray-700 hover:text-gray-900">Download Programs</Link>
+            <Link href="/download" className="text-sm font-medium text-gray-700 hover:text-gray-900">Download</Link>
+            <Link href="/faq" className="text-sm font-medium text-gray-700 hover:text-gray-900">FAQ</Link>
           </nav>
 
           <Link href="/cart" className="flex items-center gap-2 ml-auto">
@@ -100,7 +95,7 @@ export default function Header() {
             </div>
             <div className="text-right hidden sm:block">
               <div className="text-[#1c64ff] text-xs font-semibold">{cartCount}</div>
-              <div className="text-sm font-medium text-gray-800">Cart</div>
+              <div className="text-sm font-medium text-gray-800">Carrello</div>
             </div>
           </Link>
         </div>
