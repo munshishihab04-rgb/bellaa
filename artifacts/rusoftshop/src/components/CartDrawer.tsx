@@ -160,10 +160,12 @@ export default function CartDrawer() {
                 Pagamento sicuro
               </div>
               <div className="flex items-center gap-1 text-xs text-gray-400">
-                <span>🔒</span> SSL
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" stroke="#9ca3af" strokeWidth="2" strokeLinejoin="round"/><path d="M7 11V7a5 5 0 0110 0v4" stroke="#9ca3af" strokeWidth="2" strokeLinecap="round"/></svg>
+                SSL
               </div>
               <div className="flex items-center gap-1 text-xs text-gray-400">
-                <span>⚡</span> Consegna digitale
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="#9ca3af" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                Consegna digitale
               </div>
             </div>
           </div>

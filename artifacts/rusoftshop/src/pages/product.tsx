@@ -405,28 +405,36 @@ export default function ProductPage() {
                   </div>
                   <div className="p-4 space-y-3">
                     <div className="flex items-start gap-3">
-                      <span className="text-lg flex-shrink-0">📧</span>
+                      <div className="w-7 h-7 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="#c2410c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><polyline points="22,6 12,13 2,6" stroke="#c2410c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                      </div>
                       <div>
                         <p className="text-xs font-bold text-orange-900">Nessuna chiave — è un abbonamento</p>
                         <p className="text-xs text-orange-800 mt-0.5">L'abbonamento viene assegnato direttamente all'email che indichi al checkout. Non ricevi un codice da inserire.</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <span className="text-lg flex-shrink-0">⏱</span>
+                      <div className="w-7 h-7 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#c2410c" strokeWidth="2"/><polyline points="12,6 12,12 16,14" stroke="#c2410c" strokeWidth="2" strokeLinecap="round"/></svg>
+                      </div>
                       <div>
                         <p className="text-xs font-bold text-orange-900">Assegnazione entro 5 minuti</p>
                         <p className="text-xs text-orange-800 mt-0.5">Dopo la conferma del pagamento, l'abbonamento viene attivato sul tuo account Autodesk entro un massimo di 5 minuti.</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <span className="text-lg flex-shrink-0">🔄</span>
+                      <div className="w-7 h-7 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M1 4v6h6" stroke="#c2410c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10" stroke="#c2410c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                      </div>
                       <div>
                         <p className="text-xs font-bold text-orange-900">Abbonamento scaduto? Si rinnova in automatico</p>
                         <p className="text-xs text-orange-800 mt-0.5">Se avevi già un abbonamento Autodesk scaduto sulla stessa email, verrà rinnovato automaticamente — ritrovi tutto come prima.</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <span className="text-lg flex-shrink-0">🌐</span>
+                      <div className="w-7 h-7 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#c2410c" strokeWidth="2"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" stroke="#c2410c" strokeWidth="2" strokeLinecap="round"/></svg>
+                      </div>
                       <div>
                         <p className="text-xs font-bold text-orange-900">Scarica e usa da manage.autodesk.com/it</p>
                         <p className="text-xs text-orange-800 mt-0.5">Accedi con il tuo account Autodesk su <a href="https://manage.autodesk.com/it" target="_blank" rel="noopener noreferrer" className="underline font-semibold">manage.autodesk.com/it</a> per scaricare, installare e gestire il software.</p>
@@ -504,7 +512,8 @@ export default function ProductPage() {
                   <ul className="mb-4 space-y-1">
                     {product.features.map((f, i) => (
                       <li key={i} className="text-sm text-gray-700 flex items-start gap-1.5">
-                        <span className="text-gray-600 flex-shrink-0">✓</span> {f}
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="flex-shrink-0 mt-0.5"><path d="M5 13l4 4L19 7" stroke="#1c64ff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                        {f}
                       </li>
                     ))}
                   </ul>
@@ -582,7 +591,10 @@ export default function ProductPage() {
                           </div>
                           <p className="text-sm text-gray-700">{review.text}</p>
                           <div className="mt-3 bg-gray-50 rounded-lg p-3">
-                            <p className="text-xs font-semibold text-gray-700 mb-1">✓ Team Licenvo</p>
+                            <p className="text-xs font-semibold text-gray-700 mb-1 flex items-center gap-1">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="#1c64ff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/><circle cx="12" cy="12" r="10" stroke="#1c64ff" strokeWidth="2"/></svg>
+                  Team Licenvo
+                </p>
                             <p className="text-xs text-gray-600">Grazie per aver scelto Licenvo! Siamo felici che l'attivazione sia andata a buon fine.</p>
                           </div>
                         </div>

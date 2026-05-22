@@ -10,7 +10,7 @@ export default function ReturnPage() {
       <div className="max-w-4xl mx-auto px-4 py-8">
         <nav className="flex items-center gap-2 text-sm text-gray-500 mb-6">
           <Link href="/" className="hover:text-gray-800">Home</Link>
-          <span className="text-gray-300">▶</span>
+          <svg width="5" height="9" viewBox="0 0 5 9" fill="none" className="flex-shrink-0"><path d="M1 1l3 3.5L1 8" stroke="#d1d5db" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
           <span className="text-gray-700">Rimborsi e Resi</span>
         </nav>
         <h1 className="text-2xl font-bold text-gray-900 mb-8">Politica di Rimborso e Reso</h1>
@@ -20,8 +20,8 @@ export default function ReturnPage() {
             <p className="text-gray-600 mb-4">Garantiamo la qualità di tutti i prodotti venduti. Se riscontri problemi con l'attivazione o il prodotto non funziona come descritto, provvediamo a sostituzione o rimborso completo.</p>
             <div className="space-y-4">
               {[
-                { title: '✅ Rimborso garantito se:', items: ['La licenza non funziona o non è valida', 'Il prodotto è diverso da quanto descritto', 'La consegna non avviene entro 30 minuti dal pagamento'] },
-                { title: '❌ Il rimborso non si applica se:', items: ['La chiave è stata già attivata correttamente', 'Il problema dipende da incompatibilità hardware non dichiarata', 'Il prodotto è stato usato e poi si decide di non volerlo'] },
+                { title: 'Rimborso garantito se:', items: ['La licenza non funziona o non è valida', 'Il prodotto è diverso da quanto descritto', 'La consegna non avviene entro 30 minuti dal pagamento'], ok: true },
+                { title: 'Il rimborso non si applica se:', items: ['La chiave è stata già attivata correttamente', 'Il problema dipende da incompatibilità hardware non dichiarata', 'Il prodotto è stato usato e poi si decide di non volerlo'], ok: false },
               ].map((section) => (
                 <div key={section.title} className="bg-gray-50 rounded-xl p-5">
                   <h3 className="font-bold text-gray-900 mb-3">{section.title}</h3>

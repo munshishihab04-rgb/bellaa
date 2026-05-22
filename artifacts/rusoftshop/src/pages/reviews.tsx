@@ -19,8 +19,8 @@ export default function ReviewsPage() {
       <div className="max-w-4xl mx-auto px-4 py-8">
         <nav className="flex items-center gap-2 text-sm text-gray-500 mb-6">
           <Link href="/" className="hover:text-gray-800">Home</Link>
-          <span className="text-gray-300">▶</span>
-          <span className="text-gray-700">Reviews</span>
+          <svg width="5" height="9" viewBox="0 0 5 9" fill="none" className="flex-shrink-0"><path d="M1 1l3 3.5L1 8" stroke="#d1d5db" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          <span className="text-gray-700">Recensioni</span>
         </nav>
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-2xl font-bold text-gray-900">Customer Reviews</h1>
@@ -46,7 +46,10 @@ export default function ReviewsPage() {
               </div>
               <p className="text-sm text-gray-700 leading-relaxed">{review.text}</p>
               <div className="mt-3 bg-gray-50 rounded-xl p-3">
-                <span className="text-xs font-semibold text-gray-700">✓ RuSoft Team</span>
+                <span className="text-xs font-semibold text-gray-700 flex items-center gap-1">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="#1c64ff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/><circle cx="12" cy="12" r="10" stroke="#1c64ff" strokeWidth="2"/></svg>
+                  Team Licenvo
+                </span>
                 <p className="text-xs text-gray-600 mt-1">Thank you for choosing RuSoft! We&apos;re glad the activation was successful.</p>
               </div>
             </div>

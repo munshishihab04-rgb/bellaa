@@ -55,9 +55,9 @@ export default function CategoryPage() {
       <div className="max-w-7xl mx-auto px-4 py-3">
         <nav className="flex items-center gap-2 text-sm text-gray-500">
           <Link href="/" className="hover:text-gray-800">Home</Link>
-          <span className="text-gray-300">▶</span>
-          <Link href="/catalog" className="hover:text-gray-800">Catalog</Link>
-          <span className="text-gray-300">▶</span>
+          <svg width="5" height="9" viewBox="0 0 5 9" fill="none" className="flex-shrink-0"><path d="M1 1l3 3.5L1 8" stroke="#d1d5db" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          <Link href="/catalog" className="hover:text-gray-800">Catalogo</Link>
+          <svg width="5" height="9" viewBox="0 0 5 9" fill="none" className="flex-shrink-0"><path d="M1 1l3 3.5L1 8" stroke="#d1d5db" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
           <span className="text-gray-700">{category.title}</span>
         </nav>
       </div>
