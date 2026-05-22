@@ -55,6 +55,7 @@ export default function CatalogPage() {
           price: parsePrice(p.priceRange.minVariantPrice.amount),
           originalPrice: parsePrice(p.compareAtPriceRange?.minVariantPrice?.amount ?? '0'),
           category: guessCategory(p),
+          variantId: p.variants.edges[0]?.node.id ?? undefined,
         })));
       }
     }).catch(() => {}).finally(() => setLoading(false));

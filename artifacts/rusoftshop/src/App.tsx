@@ -2,6 +2,9 @@ import { Switch, Route, Router as WouterRouter } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ShopifyProvider, CartProvider } from "@shopify/hydrogen-react";
+import { CartUIProvider } from "@/context/CartContext";
+import CartDrawer from "@/components/CartDrawer";
 import HomePage from "@/pages/home";
 import CatalogPage from "@/pages/catalog";
 import CategoryPage from "@/pages/catalog-category";
@@ -21,6 +24,9 @@ import TermsPage from "@/pages/terms";
 import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient();
+
+const STORE_DOMAIN = (import.meta.env.VITE_SHOPIFY_STORE_DOMAIN as string) || 'licenvo.myshopify.com';
+const STOREFRONT_TOKEN = import.meta.env.VITE_SHOPIFY_STOREFRONT_TOKEN as string;
 
 function Router() {
   return (
@@ -48,14 +54,27 @@ function Router() {
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-          <Router />
-        </WouterRouter>
-        <Toaster />
-      </TooltipProvider>
-    </QueryClientProvider>
+    <ShopifyProvider
+      storeDomain={STORE_DOMAIN}
+      storefrontToken={STOREFRONT_TOKEN}
+      storefrontApiVersion="2026-04"
+      countryIsoCode="IT"
+      languageIsoCode="IT"
+    >
+      <CartProvider>
+        <CartUIProvider>
+          <QueryClientProvider client={queryClient}>
+            <TooltipProvider>
+              <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+                <Router />
+                <CartDrawer />
+              </WouterRouter>
+              <Toaster />
+            </TooltipProvider>
+          </QueryClientProvider>
+        </CartUIProvider>
+      </CartProvider>
+    </ShopifyProvider>
   );
 }
 

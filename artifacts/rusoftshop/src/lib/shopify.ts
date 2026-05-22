@@ -1,6 +1,6 @@
 const SHOPIFY_DOMAIN = import.meta.env.VITE_SHOPIFY_STORE_DOMAIN as string;
 const SHOPIFY_TOKEN = import.meta.env.VITE_SHOPIFY_STOREFRONT_TOKEN as string;
-const API_URL = `https://${SHOPIFY_DOMAIN}/api/2024-01/graphql.json`;
+const API_URL = `https://${SHOPIFY_DOMAIN}/api/2026-04/graphql.json`;
 
 async function shopifyFetch<T>(query: string, variables?: Record<string, unknown>): Promise<T> {
   const res = await fetch(API_URL, {

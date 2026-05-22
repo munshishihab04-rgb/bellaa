@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'wouter';
+import { useCart } from '@shopify/hydrogen-react';
+import { useCartUI } from '@/context/CartContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { getProduct, buildCheckoutUrl, parsePrice, getDiscount, type ShopifyProduct } from '@/lib/shopify';
@@ -203,12 +205,16 @@ export default function ProductPage() {
   const [product, setProduct] = useState<ProductData>(staticProducts[slug] || staticProducts['windows-11-professional']);
   const [loading, setLoading] = useState(true);
   const [checkoutUrl, setCheckoutUrl] = useState<string>('');
+  const [addedToCart, setAddedToCart] = useState(false);
 
   const [activeImage, setActiveImage] = useState(0);
   const [activeTab, setActiveTab] = useState('description');
   const [openFAQ, setOpenFAQ] = useState<number | null>(0);
   const [openGlobalFAQ, setOpenGlobalFAQ] = useState<number | null>(null);
   const [showAllReviews, setShowAllReviews] = useState(false);
+
+  const { linesAdd, status: cartStatus } = useCart();
+  const { openCart } = useCartUI();
 
   useEffect(() => {
     setLoading(true);
@@ -244,6 +250,17 @@ export default function ProductPage() {
 
   const handleBuyNow = () => {
     if (checkoutUrl) {
+      window.open(checkoutUrl, '_blank');
+    }
+  };
+
+  const handleAddToCart = () => {
+    if (product.variantId) {
+      linesAdd([{ merchandiseId: product.variantId, quantity: 1 }]);
+      openCart();
+      setAddedToCart(true);
+      setTimeout(() => setAddedToCart(false), 2500);
+    } else if (checkoutUrl) {
       window.open(checkoutUrl, '_blank');
     }
   };
@@ -346,15 +363,36 @@ export default function ProductPage() {
                 )}
               </div>
 
+              {/* Bottone Aggiungi al carrello */}
+              <button
+                onClick={handleAddToCart}
+                disabled={cartStatus === 'creating' || cartStatus === 'updating'}
+                className={`w-full flex items-center justify-center gap-2 py-3.5 rounded-xl font-bold text-base transition-all mb-2 ${addedToCart ? 'bg-green-600 text-white' : 'bg-[#1c64ff] hover:bg-blue-600 text-white'}`}>
+                {addedToCart ? (
+                  <>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    Aggiunto al carrello!
+                  </>
+                ) : (
+                  <>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                      <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <line x1="3" y1="6" x2="21" y2="6" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                      <path d="M16 10a4 4 0 01-8 0" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    Aggiungi al carrello
+                  </>
+                )}
+              </button>
+
+              {/* Bottone Acquista ora — checkout diretto */}
               <button
                 onClick={handleBuyNow}
-                className="w-full flex items-center justify-center gap-3 bg-[#1d1b20] text-white py-3.5 rounded-xl font-bold text-base hover:bg-gray-800 transition-colors mb-2">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <line x1="3" y1="6" x2="21" y2="6" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M16 10a4 4 0 01-8 0" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                className="w-full flex items-center justify-center gap-2 bg-[#1d1b20] text-white py-3 rounded-xl font-semibold text-sm hover:bg-gray-800 transition-colors mb-2">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-                Acquista ora
+                Acquista ora — checkout immediato
               </button>
               <p className="text-center text-xs text-gray-400 mb-5">Pagamento sicuro · Sostituzione o rimborso se non adatto</p>
 

@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'wouter';
+import { useCart } from '@shopify/hydrogen-react';
+import { useCartUI } from '@/context/CartContext';
 
 export default function Header() {
-  const [cartCount] = useState(0);
   const [showCatalog, setShowCatalog] = useState(false);
+  const { totalQuantity } = useCart();
+  const { toggleCart } = useCartUI();
 
   const catalogCategories = [
     { name: 'Microsoft Office', href: '/catalog/office' },
@@ -21,7 +24,7 @@ export default function Header() {
       <div className="bg-[#1d1b20] text-white text-sm py-2 px-4 flex items-center justify-center">
         <span>🔒 Consegna istantanea via email · Supporto tecnico incluso · Licenze originali garantite</span>
       </div>
-      <header className="bg-white shadow-sm sticky top-0 z-50">
+      <header className="bg-white shadow-sm sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-4">
           <Link href="/" className="flex-shrink-0 flex items-center gap-2">
             <span className="text-2xl font-black text-[#1c64ff] tracking-tight">Licenvo</span>
@@ -80,24 +83,25 @@ export default function Header() {
             <Link href="/faq" className="text-sm font-medium text-gray-700 hover:text-gray-900">FAQ</Link>
           </nav>
 
-          <Link href="/cart" className="flex items-center gap-2 ml-auto">
+          {/* Cart button — opens drawer */}
+          <button onClick={toggleCart} className="flex items-center gap-2 ml-auto hover:opacity-80 transition-opacity">
             <div className="relative">
               <svg width="24" height="22" viewBox="0 0 24 22" fill="none">
                 <path d="M1 1h3l2 10h12l2-8H6" stroke="#111827" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 <circle cx="9" cy="19" r="1.5" fill="#111827" />
                 <circle cx="18" cy="19" r="1.5" fill="#111827" />
               </svg>
-              {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-[#1c64ff] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-                  {cartCount}
+              {totalQuantity > 0 && (
+                <span className="absolute -top-2 -right-2 bg-[#1c64ff] text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center leading-none">
+                  {totalQuantity}
                 </span>
               )}
             </div>
             <div className="text-right hidden sm:block">
-              <div className="text-[#1c64ff] text-xs font-semibold">{cartCount}</div>
+              <div className="text-[#1c64ff] text-xs font-semibold">{totalQuantity > 0 ? totalQuantity : ''}</div>
               <div className="text-sm font-medium text-gray-800">Carrello</div>
             </div>
-          </Link>
+          </button>
         </div>
 
         {showCatalog && <div className="fixed inset-0 z-40" onClick={() => setShowCatalog(false)} />}
